@@ -1,0 +1,27 @@
+{
+  "name": "koishi-plugin-canvas",
+  "version": "0.1.0",
+  "description": "Provide `ctx.canvas` using skia-canvas for Koishi.js",
+  "keywords": [
+    "koishi",
+    "koishi.js"
+  ],
+  "author": "i'DLisT <me@idl.ist> (https://idl.ist)",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc && node build.js"
+  },
+  "dependencies": {
+    "skia-canvas": "^0.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "esbuild": "^0.14.0",
+    "eslint": "^8.0.0",
+    "koishi": "^4.0.0",
+    "typescript": "^4.0.0"
+  }
+}
