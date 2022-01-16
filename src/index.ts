@@ -24,6 +24,19 @@ const logger = new Logger('canvas')
 
 // Extend default behavior Canvas.
 class Canvas extends skiaCanvas.Canvas {
+  async renderResize(factor :number) {
+    const outputCanvas = new Canvas()
+    const outputCtx = outputCanvas.getContext('2d')
+
+    outputCanvas.width = this.width * factor
+    outputCanvas.height = this.height * factor
+
+    const rendered = this.toBufferSync('png')
+    outputCtx.drawImage(await skiaCanvas.loadImage(rendered), 0, 0, outputCanvas.width, outputCanvas.height)
+
+    return outputCanvas
+  }
+
   toBase64() {
     return this.toBufferSync('png').toString('base64')
   }
@@ -74,5 +87,5 @@ namespace ServiceCanvas {
 export { Canvas }
 export default ServiceCanvas
 
-// Export skia-canvas itself as a fail-safe.
-export { skiaCanvas }
+// Re-export skia-canvas itself.
+export * from 'skia-canvas'
