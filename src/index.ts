@@ -60,8 +60,8 @@ class ServiceCanvas extends Service {
   registerFont(path: string, options: FontOptions) {
     const result = skiaCanvas.FontLibrary.use(options.family, [path])[0]
     logger.info(
-      `font registered: ${result.family} (${result.file}) / ` +
-      `weight: ${result.weight}, style: ${result.style}, width: ${result.width}`
+      `Font registered: ${result.family} (${result.file}) / ` +
+      `weight: ${result.weight}, style: ${result.style}, width: ${result.width}.`
     )
   }
 
