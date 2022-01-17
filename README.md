@@ -1,7 +1,13 @@
 # koishi-plugin-canvas
 
-Provide `ctx.canvas` using skia-canvas for Koishi.js
+非常简陋的 `ctx.canvas` 接口提供，主要是我自己用着方便（其实也并没有很方便）。
 
-# Warning
+## 安装方法
 
-估计根本不会有人用这个吧！
+```shell
+npm i koishi-plugin-canvas
+```
+
+## 使用方法
+
+咕咕，配置项主要是用来配置字体的。

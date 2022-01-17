@@ -1,6 +1,6 @@
 {
   "name": "koishi-plugin-canvas",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Provide `ctx.canvas` using skia-canvas for Koishi.js",
   "author": "i'DLisT <me@idl.ist> (https://idl.ist)",
   "license": "MIT",
