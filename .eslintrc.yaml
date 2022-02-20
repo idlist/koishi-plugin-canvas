@@ -3,16 +3,24 @@ env:
   es6: true
   node: true
 
-extends: eslint:recommended
+plugins:
+  - '@typescript-eslint'
 
-globals:
-  Atomics: readonly
-  SharedArrayBuffer: readonly
+extends:
+  - eslint:recommended
+  - plugin:@typescript-eslint/recommended
+
+parser: '@typescript-eslint/parser'
 
 parserOptions:
-  ecmaVersion: 2021
+  ecmaVersion: 12
+  sourceType: module
+
+ignorePatterns:
+  - dist
 
 rules:
+  '@typescript-eslint/no-namespace': [off]
   comma-dangle: [warn, always-multiline]
   indent: [warn, 2, { SwitchCase: 1 }]
   no-empty: [warn]
