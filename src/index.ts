@@ -1,4 +1,4 @@
-import { Context, Service, Logger, Schema } from 'koishi'
+import { Context, Service, Logger, Schema as S } from 'koishi'
 import skiaCanvas from 'skia-canvas'
 
 declare module 'koishi' {
@@ -10,12 +10,24 @@ declare module 'koishi' {
 }
 
 interface FontOptions {
+  /**
+   * 字体注册成的名字。
+   */
   family: string
-  weight?: string
+  /**
+   * 字体注册成的字重，如 700 或者 bold。
+   */
+  weight?: string | number
+  /**
+   * 字体注册成的样式，如斜体、花体等。
+   */
   style?: string
 }
 
 interface FontOptionsConfig extends FontOptions {
+  /**
+   * 字体对于工作路径的相对路径。
+   */
   path: string
 }
 
@@ -24,7 +36,7 @@ const logger = new Logger('canvas')
 
 // Extend default behavior Canvas.
 class Canvas extends skiaCanvas.Canvas {
-  async renderResize(factor :number) {
+  async renderResize(factor: number) {
     const outputCanvas = new Canvas()
     const outputCtx = outputCanvas.getContext('2d')
 
@@ -70,16 +82,26 @@ class ServiceCanvas extends Service {
 
 namespace ServiceCanvas {
   export interface Config {
+    /**
+     * 字体列表。
+     *
+     * @default []
+     */
     fonts?: FontOptionsConfig[]
   }
 
-  export const Config = Schema.object({
-    fonts: Schema.array(Schema.object({
-      path: Schema.string().required(),
-      family: Schema.string().required(),
-      weight: Schema.union([Schema.string(), Schema.number()]),
-      style: Schema.string()
+  export const Config = S.object({
+    fonts: S.array(S.object({
+      path: S.string().required()
+        .description('字体对于工作路径的相对路径。'),
+      family: S.string().required()
+        .description('字体注册成的名字。'),
+      weight: S.union([S.string(), S.number()])
+        .description('字体注册成的字重，如 700 或者 bold。'),
+      style: S.string()
+        .description('字体注册成的样式，如斜体、花体等。')
     })).default([])
+      .description('字体列表。格式参照 https://github.com/idlist/koishi-plugin-canvas 的 README，暂时无法在控制台配置。')
   })
 }
 

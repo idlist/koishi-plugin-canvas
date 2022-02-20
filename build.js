@@ -9,12 +9,10 @@ esbuild.build({
   platform: 'node',
   sourcemap: 'both',
   format: 'cjs',
-  plugins: [
-    {
-      name: 'external library',
-      setup(build) {
-        build.onResolve({ filter: /^[@/\w-]+$/ }, () => ({ external: true }))
-      },
-    }
-  ]
+  plugins: [{
+    name: 'external library',
+    setup(build) {
+      build.onResolve({ filter: /^[@/\w-]+$/ }, () => ({ external: true }))
+    },
+  }],
 })
