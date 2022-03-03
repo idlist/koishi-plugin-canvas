@@ -15,9 +15,9 @@ interface FontOptions {
    */
   family: string
   /**
-   * 字体注册成的字重，如 700 或者 bold。
+   * 字体注册成的字重，如 `700` 者 `bold`。
    */
-  weight?: string | number
+  weight?: string
   /**
    * 字体注册成的样式，如斜体、花体等。
    */
@@ -97,13 +97,13 @@ namespace ServiceCanvas {
           .description('字体对于工作路径的相对路径。'),
         family: S.string().required()
           .description('字体注册成的名字。'),
-        weight: S.union([S.string(), S.number()])
-          .description('字体注册成的字重，如 700 或者 bold。'),
+        weight: S.string()
+          .description('（可选）字体注册成的字重，如 `700` 或 `bold`。'),
         style: S.string()
-          .description('字体注册成的样式，如斜体、花体等。'),
+          .description('（可选）字体注册成的样式，如斜体、花体等。'),
       }),
     ).default([])
-      .description('字体列表。格式参照 https://github.com/idlist/koishi-plugin-canvas 的 README，暂时无法在控制台配置。'),
+      .description('字体列表。格式参照 [README](https://github.com/idlist/koishi-plugin-canvas#%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E9%A1%B9)。'),
   })
 }
 

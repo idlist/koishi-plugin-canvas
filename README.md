@@ -30,7 +30,7 @@ npm i koishi-plugin-canvas
 interface {
   path: string
   family: string
-  weight?: string | number
+  weight?: string
   style?: string
 }
 ```
@@ -43,7 +43,7 @@ interface {
 
 - `style`（可选）：字体注册成的样式，如斜体、花体等
 
-而且实际上，`skia-canvas` 注册字体的时候是 **无法提供** `weight` 和 `style` 的，所以不填也没关系。我也不知道为什么要留这两个选项在这里。
+**注：** 实际上，`skia-canvas` 注册字体的时候是 **无法设置** `weight` 和 `style` 的，所以不填也没关系。我也不知道为什么要留这两个选项在这里。
 
 成功注册字体时，控制台会提示字体注册成功，以及字体的名字、字重和样式。
 
@@ -59,7 +59,7 @@ interface {
 
 - 返回值: `Canvas`
 
-新建一个 `Canvas` 对象并返回它。下面是一个一般的新建样例，因为 `canvas` 的 `ctx` 和 `koishi` 的 `ctx` 重名，你需要在代码中给其中一个赋予不同的名字。
+新建一个 `Canvas` 对象并返回它。下面是一个一般的范例，因为 `canvas` 的 `ctx` 和 `koishi` 的 `ctx` 重名，你需要在代码中给其中一个赋予不同的名字。
 
 ```js
 const canvas = ctx.canvas.createCanvas // 这里的 ctx 是 koishi 的 ctx
@@ -84,9 +84,9 @@ interface FontOptions {
 
 注册本地字体。配置项中的 `fonts` 也是通过这个方法进行注册。
 
-#### `loadImage(url: string)`
+#### `canvas.loadImage(url: string)`
 
-加载图片，详情见 [这里](https://github.com/samizdatco/skia-canvas#loadimage) 。简单地说，可以快速加载网络图片或者本地图片为 `canvas` 可用的对象。
+加载图片，详情见 [这里](https://github.com/samizdatco/skia-canvas#loadimage) 。可以快速加载网络图片或者本地图片为 `Canvas` 可用的对象。
 
 ## `Canvas` 拓展方法
 
