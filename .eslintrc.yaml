@@ -18,6 +18,7 @@ parserOptions:
 
 ignorePatterns:
   - dist
+  - build.js
 
 rules:
   '@typescript-eslint/no-namespace': [off]

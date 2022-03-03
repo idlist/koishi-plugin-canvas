@@ -91,16 +91,18 @@ namespace ServiceCanvas {
   }
 
   export const Config = S.object({
-    fonts: S.array(S.object({
-      path: S.string().required()
-        .description('字体对于工作路径的相对路径。'),
-      family: S.string().required()
-        .description('字体注册成的名字。'),
-      weight: S.union([S.string(), S.number()])
-        .description('字体注册成的字重，如 700 或者 bold。'),
-      style: S.string()
-        .description('字体注册成的样式，如斜体、花体等。'),
-    })).default([])
+    fonts: S.array(
+      S.object({
+        path: S.string().required()
+          .description('字体对于工作路径的相对路径。'),
+        family: S.string().required()
+          .description('字体注册成的名字。'),
+        weight: S.union([S.string(), S.number()])
+          .description('字体注册成的字重，如 700 或者 bold。'),
+        style: S.string()
+          .description('字体注册成的样式，如斜体、花体等。'),
+      }),
+    ).default([])
       .description('字体列表。格式参照 https://github.com/idlist/koishi-plugin-canvas 的 README，暂时无法在控制台配置。'),
   })
 }
