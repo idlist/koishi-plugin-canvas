@@ -4,9 +4,10 @@ const esbuild = require('esbuild')
 // https://github.com/koishijs/koishi/blob/master/build/compile.ts
 esbuild.build({
   entryPoints: ['src/index.ts'],
-  outdir: 'dist',
+  outdir: 'lib',
   bundle: true,
   platform: 'node',
+  target: 'node12',
   sourcemap: 'both',
   format: 'cjs',
   plugins: [{
