@@ -13,19 +13,25 @@ extends:
 parser: '@typescript-eslint/parser'
 
 parserOptions:
-  ecmaVersion: 12
-  sourceType: module
+  ecmaVersion: latest
 
 ignorePatterns:
   - dist
   - build.js
 
 rules:
-  '@typescript-eslint/no-namespace': [off]
-  comma-dangle: [warn, always-multiline]
+  # Turn off rules
+  '@typescript-eslint/no-empty': off
+  '@typescript-eslint/no-var-requires': off
+  '@typescript-eslint/no-namespace': off
+
+  # Set some rules from error to warining
+  '@typescript-eslint/no-empty-function': warn
+  '@typescript-eslint/no-unused-vars': warn
+  prefer-const: warn
+
+  # Coding styles
   indent: [warn, 2, { SwitchCase: 1 }]
-  no-empty: [warn]
-  no-unused-vars: [warn]
-  prefer-const: [warn]
-  quotes: [warn, single]
   semi: [warn, never]
+  quotes: [warn, single]
+  comma-dangle: [warn, always-multiline]

@@ -32,7 +32,7 @@ interface FontOptionsConfig extends FontOptions {
 }
 
 Context.service('canvas')
-const logger = new Logger('canvas')
+const log = new Logger('canvas')
 
 // Extend default behavior Canvas.
 class Canvas extends skiaCanvas.Canvas {
@@ -54,8 +54,8 @@ class Canvas extends skiaCanvas.Canvas {
   }
 }
 
-// Re-package skia-canvas.
-// Using node-canvas style, although I don't know why I'm doing this.
+// Wrap skia-canvas inside the service.
+// Using node-canvas style, although I don't know why either.
 class ServiceCanvas extends Service {
   constructor(ctx: Context, config: ServiceCanvas.Config) {
     super(ctx, 'canvas', true)
@@ -71,7 +71,7 @@ class ServiceCanvas extends Service {
 
   registerFont(path: string, options: FontOptions) {
     const result = skiaCanvas.FontLibrary.use(options.family, [path])[0]
-    logger.info(
+    log.info(
       `Font registered: ${result.family} (${result.file}) / ` +
       `weight: ${result.weight}, style: ${result.style}, width: ${result.width}.`,
     )
