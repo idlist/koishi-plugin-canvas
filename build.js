@@ -1,6 +1,6 @@
 const esbuild = require('esbuild')
 
-// Basically copied from here:
+// Copied from here:
 // https://github.com/koishijs/koishi/blob/master/build/compile.ts
 esbuild.build({
   entryPoints: ['src/index.ts'],

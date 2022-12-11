@@ -2,10 +2,8 @@ import { Context, Service, Logger, Schema as S } from 'koishi'
 import skiaCanvas from 'skia-canvas'
 
 declare module 'koishi' {
-  namespace Context {
-    interface Services {
-      canvas: ServiceCanvas
-    }
+  interface Context {
+    canvas: Canvas
   }
 }
 
@@ -35,9 +33,9 @@ Context.service('canvas')
 const log = new Logger('canvas')
 
 // Extend default behavior Canvas.
-class Canvas extends skiaCanvas.Canvas {
+class CanvasInstance extends skiaCanvas.Canvas {
   async renderResize(factor: number) {
-    const outputCanvas = new Canvas()
+    const outputCanvas = new CanvasInstance()
     const outputCtx = outputCanvas.getContext('2d')
 
     outputCanvas.width = this.width * factor
@@ -56,8 +54,8 @@ class Canvas extends skiaCanvas.Canvas {
 
 // Wrap skia-canvas inside the service.
 // Using node-canvas style, although I don't know why either.
-class ServiceCanvas extends Service {
-  constructor(ctx: Context, config: ServiceCanvas.Config) {
+class Canvas extends Service {
+  constructor(ctx: Context, config: Canvas.Config) {
     super(ctx, 'canvas', true)
 
     if (config.fonts && Array.isArray(config.fonts)) {
@@ -66,7 +64,7 @@ class ServiceCanvas extends Service {
   }
 
   createCanvas(width?: number, height?: number) {
-    return new Canvas(width, height)
+    return new CanvasInstance(width, height)
   }
 
   registerFont(path: string, options: FontOptions) {
@@ -80,7 +78,7 @@ class ServiceCanvas extends Service {
   loadImage = skiaCanvas.loadImage
 }
 
-namespace ServiceCanvas {
+namespace Canvas {
   export interface Config {
     /**
      * 字体列表。
@@ -108,8 +106,8 @@ namespace ServiceCanvas {
 }
 
 // Export modified koishi services.
-export { Canvas }
-export default ServiceCanvas
+export { CanvasInstance as Canvas }
+export default Canvas
 
-// Re-export skia-canvas itself.
+// Re-export skia-canvas itself for fail-safe.
 export * from 'skia-canvas'
