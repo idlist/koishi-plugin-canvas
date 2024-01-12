@@ -29,7 +29,6 @@ interface FontOptionsConfig extends FontOptions {
   path: string
 }
 
-Context.service('canvas')
 const log = new Logger('canvas')
 
 // Extend default behavior Canvas.
