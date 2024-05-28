@@ -1,6 +1,6 @@
-# koishi-plugin-canvas
+# @idlist/koishi-plugin-canvas
 
-> 注意：官方已经提供了与本仓库同名的 `koishi-plugin-canvas`，此仓库为 v0.2 之前的版本内容，仅供个人使用，且会在将来被归档。
+> 注意：官方已经提供了 `@koishijs/canvas`，此仓库为 `koishi-plugin-canvas v0.1 版本的内容，仅供个人使用，且会在将来被归档。
 
 使用 [skia-canvas](https://github.com/samizdatco/skia-canvas) 提供的简陋的 `ctx.canvas` 接口，主要是我自己用着方便（虽然其实并没有多方便）。
 
